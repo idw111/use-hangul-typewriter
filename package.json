@@ -1,6 +1,6 @@
 {
   "name": "use-hangul-typewriter",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "react hook for hangul typewriter effect",
   "main": "lib/index.js",
   "scripts": {

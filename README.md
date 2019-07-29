@@ -3,6 +3,7 @@
 > react hook for hangul typewriter effect
 
 ![example](./example.gif)
+<https://codesandbox.io/embed/compassionate-glitter-3ybbz?fontsize=14>
 
 ## install
 
