@@ -2,17 +2,28 @@
 
 > react hook for hangul typewriter effect
 
+![example](./example.gif)
+
 ## install
 
 ```
 npm install use-hangul-typewriter
 ```
 
+## peer dependency
+- react
+- hangul-js
+
 ## usage
 
 ```javascript
 const Typewriter = ({}) => {
-    const [text, toggle, reset, pause, resume] = useHangulTypewriter(['한글 자소를 분리하여 타이핑', '하하하', '호호호']);
+    const texts = [
+        '한글 자소를 분리하여 타이핑', 
+        '오늘 날씨는 흐림', 
+        '봄 여름 가을 겨울'
+    ];
+    const [text, toggle, reset, pause, resume] = useHangulTypewriter(texts);
     return <span>{text}</span>;
 }
 ```

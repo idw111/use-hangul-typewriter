@@ -27,7 +27,7 @@ const useHangulTypewriter = (texts = [], interval = 50, waitingInterval = 3000) 
 						setDirection(-1);
 						setCursor(assembledFulltext.length);
 					}
-					if (direction < 0 && cursor <= 0) {
+					if (direction < 0 && cursor < 0) {
 						setDirection(1);
 						setIndex((index + 1) % texts.length);
 					}
