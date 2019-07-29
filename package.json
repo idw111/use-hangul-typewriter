@@ -1,0 +1,23 @@
+{
+  "name": "use-hangul-typewriter",
+  "version": "0.1.0",
+  "description": "react hook for hangul typewriter effect",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react",
+    "hook",
+    "hangul",
+    "typewriter"
+  ],
+  "author": "Dongwon Lim",
+  "license": "MIT",
+  "dependencies": {
+    "hangul-js": "^0.2.5"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0"
+  }
+}
