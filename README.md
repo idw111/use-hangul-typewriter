@@ -27,3 +27,8 @@ const Typewriter = ({}) => {
     return <span>{text}</span>;
 }
 ```
+
+## parameters
+- texts (Array): texts to display
+- interval (number): interval between typing
+- waitingInterval (number): waiting interval when a single line of text is fully entered
