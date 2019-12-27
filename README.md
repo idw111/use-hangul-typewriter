@@ -33,4 +33,4 @@ const Typewriter = ({}) => {
 ## parameters
 - texts (Array): texts to display
 - interval (number): interval between typing
-- waitingInterval (number): waiting interval when a single line of text is fully entered
+- waitingInterval (number): waiting interval after a single line of text is fully entered and before the line is about to start to erase
