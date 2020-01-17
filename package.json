@@ -1,33 +1,42 @@
 {
-  "name": "use-hangul-typewriter",
-  "version": "0.1.7",
-  "description": "react hook for hangul typewriter effect",
-  "main": "lib/index.js",
-  "scripts": {
-    "build": "babel src --out-dir lib",
-    "clean": "rimraf lib",
-    "prepublish": "npm run clean && npm run build",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [
-    "react",
-    "hook",
-    "hangul",
-    "typewriter"
-  ],
-  "author": "Dongwon Lim",
-  "license": "MIT",
-  "dependencies": {},
-  "peerDependencies": {
-    "hangul-js": "^0.2.5",
-    "react": "^16.8.0"
-  },
-  "devDependencies": {
-    "@babel/cli": "^7.5.5",
-    "@babel/core": "^7.5.5",
-    "@babel/preset-env": "^7.5.5",
-    "hangul-js": "^0.2.5",
-    "react": "^16.8.6",
-    "rimraf": "^2.6.3"
-  }
+	"name": "use-hangul-typewriter",
+	"version": "0.2.0",
+	"description": "react hook for hangul typewriter effect",
+	"main": "lib/index.js",
+	"scripts": {
+		"clean": "rimraf lib",
+		"build": "babel src --out-dir lib",
+		"build:example": "webpack --config ./example/webpack.config.js",
+		"prepublish": "npm run clean && npm run build",
+		"webpack": "webpack --watch --config ./example/webpack.config.js",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [
+		"react",
+		"hook",
+		"hangul",
+		"typewriter"
+	],
+	"author": "Dongwon Lim",
+	"license": "MIT",
+	"dependencies": {},
+	"peerDependencies": {
+		"hangul-js": "^0.2.5",
+		"react": "^16.8.0"
+	},
+	"devDependencies": {
+		"@babel/cli": "^7.5.5",
+		"@babel/core": "^7.5.5",
+		"@babel/plugin-proposal-optional-chaining": "^7.8.3",
+		"@babel/polyfill": "^7.8.3",
+		"@babel/preset-env": "^7.5.5",
+		"@babel/preset-react": "^7.8.3",
+		"babel-loader": "^8.0.6",
+		"hangul-js": "^0.2.5",
+		"react": "^16.12.0",
+		"react-dom": "^16.12.0",
+		"rimraf": "^2.6.3",
+		"webpack": "^4.41.5",
+		"webpack-cli": "^3.3.10"
+	}
 }
