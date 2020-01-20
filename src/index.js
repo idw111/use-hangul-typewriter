@@ -26,7 +26,7 @@ const useHangulTypewriter = (texts = [], interval = 50, waitingInterval = 3000) 
 		setState(defaultState);
 	}, [texts]);
 	useEffect(() => {
-		if (state.direction !== 0 && texts.length > 0) {
+		if (state.direction !== DIRECTION_NONE && texts.length > 0) {
 			const assembledFulltext = texts[state.index];
 			const disassembledFulltext = disassembledTexts[state.index];
 			const text = (state.direction > 0 ? disassembledFulltext : assembledFulltext).substr(0, state.cursor);
@@ -48,6 +48,7 @@ const useHangulTypewriter = (texts = [], interval = 50, waitingInterval = 3000) 
 	const pause = () => {
 		if (state.direction === DIRECTION_NONE) return;
 		setState({ ...state, storedDirection: state.direction, direction: DIRECTION_NONE });
+		clearTimeout(timerRef.current);
 	};
 	const resume = () => {
 		if (state.direction !== DIRECTION_NONE) return;

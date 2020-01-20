@@ -2,7 +2,7 @@
 
 > react hook for hangul typewriter effect
 
-[live demo](https://idw111.github.io/use-hangul-typewriter/example/)
+[Live Demo](https://idw111.github.io/use-hangul-typewriter/example/)
 
 ## install
 
