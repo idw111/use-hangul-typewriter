@@ -18,7 +18,7 @@ interface TypewriterState {
 
 const getInitialState = (texts: string[]): TypewriterState => {
   return {
-    texts: texts.map((text) => disassemble(text).concat(' ')),
+    texts: texts.map((text) => disassemble(text)),
     currentText: '',
     index: 0,
     cursor: 0,
@@ -38,7 +38,7 @@ const reducer = (state: TypewriterState, action: { type: TypewriterActionType; [
     case 'reset':
       return {
         ...state,
-        texts: action.texts.map((text: string) => disassemble(text).concat(' ')),
+        texts: action.texts.map((text: string) => disassemble(text)),
         currentText: '',
         index: 0,
         cursor: 0,
@@ -74,7 +74,7 @@ const reducer = (state: TypewriterState, action: { type: TypewriterActionType; [
  * @param {number} interval
  * @param {number} waitingInterval
  */
-const useHangulTypewriter = (texts: string[] = [], interval: number = 100, waitingInterval: number = 3000) => {
+const useHangulTypewriter = (texts: string[] = [], interval: number = 100, waitingInterval: number = 3000, caret = '▎') => {
   const [state, dispatch] = useReducer(reducer, getInitialState(texts));
   const timerRef = useRef(0);
   useEffect(() => {
@@ -84,14 +84,17 @@ const useHangulTypewriter = (texts: string[] = [], interval: number = 100, waiti
     }
   }, [state.status, state.cursor]);
   useEffect(() => {
-    reset(texts);
-  }, [texts]);
+    if (texts.length) {
+      timerRef.current = window.setTimeout(() => reset(texts), 0);
+      return () => clearTimeout(timerRef.current);
+    }
+  }, [texts.join('')]);
   const proceed = () => dispatch({ type: 'tick' });
   const pause = () => dispatch({ type: 'pause', timer: timerRef.current });
   const resume = () => dispatch({ type: 'resume' });
   const toggle = () => (state.status !== 'pending' ? pause() : resume());
   const reset = (texts: string[]) => dispatch({ type: 'reset', texts });
-  return [state.currentText, pause, resume, toggle];
+  return [state.currentText + caret, pause, resume, toggle];
 };
 
 export default useHangulTypewriter;
