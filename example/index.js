@@ -4,8 +4,8 @@ import ReactDOM from 'react-dom';
 import useHangulTypewriter from '../src';
 
 const texts = [
-	['가나다라마바사', '오늘은 금요일', '치키치키 차카차카 초코초코초'],
-	['아자차카타파하', '오늘은 월요일', '나쁜일을 해라']
+	['치키치키 차카차카 초코초코초', '나쁜일을 하면은~', '치키치키 차카차카 초코초코초', '우리에게 들키지~'],
+	['가나다라마바사', '아자차카타파하'],
 ];
 
 const Example = ({}) => {
