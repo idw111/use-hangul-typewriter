@@ -22,7 +22,7 @@ const getInitialState = (texts: string[]): TypewriterState => {
     currentText: '',
     index: 0,
     cursor: 0,
-    status: 'pending',
+    status: 'playing',
     direction: 'forward',
   };
 };
@@ -38,6 +38,7 @@ const reducer = (state: TypewriterState, action: { type: TypewriterActionType; [
     case 'reset':
       return {
         ...state,
+        texts: action.texts.map((text: string) => disassemble(text).concat(' ')),
         currentText: '',
         index: 0,
         cursor: 0,
@@ -50,13 +51,13 @@ const reducer = (state: TypewriterState, action: { type: TypewriterActionType; [
         return state;
       } else if (state.status === 'playing') {
         if (state.direction === 'forward') {
-          if (state.cursor === state.texts[state.index].length) return { ...state, direction: 'backward', status: 'waiting' };
+          if (state.cursor === state.texts[state.index].length) return { ...state, direction: 'backward', status: 'waiting', cursor: state.currentText.length };
           const cursor = state.cursor + 1;
           return { ...state, currentText: assemble(state.texts[state.index].slice(0, cursor)), cursor };
         } else if (state.direction === 'backward') {
           if (state.cursor === 0) return { ...state, direction: 'forward', status: 'waiting', index: (state.index + 1) % state.texts.length };
           const cursor = state.cursor - 1;
-          return { ...state, currentText: assemble(state.texts[state.index].slice(0, cursor)), cursor };
+          return { ...state, currentText: state.currentText.substr(0, cursor), cursor };
         }
       } else if (state.status === 'waiting') {
         return { ...state, status: 'playing' };
@@ -73,20 +74,23 @@ const reducer = (state: TypewriterState, action: { type: TypewriterActionType; [
  * @param {number} interval
  * @param {number} waitingInterval
  */
-const useHangulTypewriter = (texts: string[] = [], interval: number = 50, waitingInterval: number = 3000) => {
+const useHangulTypewriter = (texts: string[] = [], interval: number = 100, waitingInterval: number = 3000) => {
   const [state, dispatch] = useReducer(reducer, getInitialState(texts));
   const timerRef = useRef(0);
   useEffect(() => {
     if (state.status !== 'pending') {
-      timerRef.current = setTimeout(proceed, state.status === 'playing' ? interval : waitingInterval);
+      timerRef.current = window.setTimeout(proceed, state.status === 'playing' ? interval : waitingInterval);
       return () => clearTimeout(timerRef.current);
     }
-  }, [texts, state.status, state.cursor]);
+  }, [state.status, state.cursor]);
+  useEffect(() => {
+    reset(texts);
+  }, [texts]);
   const proceed = () => dispatch({ type: 'tick' });
   const pause = () => dispatch({ type: 'pause', timer: timerRef.current });
   const resume = () => dispatch({ type: 'resume' });
   const toggle = () => (state.status !== 'pending' ? pause() : resume());
-  const reset = () => dispatch({ type: 'reset' });
+  const reset = (texts: string[]) => dispatch({ type: 'reset', texts });
   return [state.currentText, toggle, reset, pause, resume];
 };
 
