@@ -9,7 +9,7 @@ const texts = [
 
 const Example = ({}) => {
   const [index, setIndex] = useState(0);
-  const [text, toggle, reset, pause, resume] = useHangulTypewriter(texts[index], 60, 1000);
+  const [text, pause, resume, toggle] = useHangulTypewriter(texts[index], 60, 1000);
   return (
     <>
       <div className="typewriter" style={{ fontSize: 24, lineHeight: '40px' }}>

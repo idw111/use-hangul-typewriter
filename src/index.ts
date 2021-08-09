@@ -91,7 +91,7 @@ const useHangulTypewriter = (texts: string[] = [], interval: number = 100, waiti
   const resume = () => dispatch({ type: 'resume' });
   const toggle = () => (state.status !== 'pending' ? pause() : resume());
   const reset = (texts: string[]) => dispatch({ type: 'reset', texts });
-  return [state.currentText, toggle, reset, pause, resume];
+  return [state.currentText, pause, resume, toggle];
 };
 
 export default useHangulTypewriter;
