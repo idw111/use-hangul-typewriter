@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { render } from 'react-dom';
 import useHangulTypewriter from '../lib';
 
