@@ -76,21 +76,21 @@ const reducer = (state: TypewriterState, action: { type: TypewriterActionType; [
  */
 const useHangulTypewriter = (texts: string[] = [], interval: number = 100, waitingInterval: number = 3000, caret = '▎') => {
   const [state, dispatch] = useReducer(reducer, getInitialState(texts));
-  const timerRef = useRef(0);
+  const timer = useRef(0);
   useEffect(() => {
     if (state.status !== 'pending') {
-      timerRef.current = window.setTimeout(proceed, state.status === 'playing' ? interval : waitingInterval);
-      return () => clearTimeout(timerRef.current);
+      timer.current = window.setTimeout(proceed, state.status === 'playing' ? interval : waitingInterval);
+      return () => clearTimeout(timer.current);
     }
   }, [state.status, state.cursor]);
   useEffect(() => {
     if (texts.length) {
-      timerRef.current = window.setTimeout(() => reset(texts), 0);
-      return () => clearTimeout(timerRef.current);
+      timer.current = window.setTimeout(() => reset(texts), 0);
+      return () => clearTimeout(timer.current);
     }
   }, [texts.join('')]);
   const proceed = () => dispatch({ type: 'tick' });
-  const pause = () => dispatch({ type: 'pause', timer: timerRef.current });
+  const pause = () => dispatch({ type: 'pause', timer: timer.current });
   const resume = () => dispatch({ type: 'resume' });
   const toggle = () => (state.status !== 'pending' ? pause() : resume());
   const reset = (texts: string[]) => dispatch({ type: 'reset', texts });
