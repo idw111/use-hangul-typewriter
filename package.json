@@ -1,6 +1,6 @@
 {
   "name": "use-hangul-typewriter",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "react hook for hangul typewriter effect",
   "main": "./src/index.ts",
   "types": "dist/types/index.d.ts",
@@ -15,8 +15,8 @@
   ],
   "scripts": {
     "build": "tsc --project tsconfig.cjs.json & tsc --project tsconfig.esm.json",
+    "build:example": "npm run clean && npm run build && tsc ./example/index.tsx --jsx react-jsx -esModuleInterOp && webpack --config ./example/webpack.config.js",
     "clean": "rm -rf dist",
-    "build:example": "npm run clean && npm run build && webpack --config ./example/webpack.config.js",
     "prepublish": "npm run build:example",
     "webpack": "webpack --watch --config ./example/webpack.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
