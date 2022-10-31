@@ -74,7 +74,7 @@ const reducer = (state: TypewriterState, action: { type: TypewriterActionType; [
  * @param {number} interval
  * @param {number} waitingInterval
  */
-const useHangulTypewriter = (texts: string[] = [], interval: number = 100, waitingInterval: number = 3000, caret = '▎') => {
+const useHangulTypewriter = (texts: string[] = [], interval: number = 100, waitingInterval: number = 3000, caret = '▎'): [string, () => void, () => void, () => void] => {
   const [state, dispatch] = useReducer(reducer, getInitialState(texts));
   const timer = useRef(0);
   useEffect(() => {

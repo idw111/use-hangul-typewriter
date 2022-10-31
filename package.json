@@ -1,13 +1,23 @@
 {
   "name": "use-hangul-typewriter",
-  "version": "0.4.2",
+  "version": "0.5.0",
   "description": "react hook for hangul typewriter effect",
-  "main": "lib/index.js",
+  "main": "./src/index.ts",
+  "types": "dist/types/index.d.ts",
+  "exports": {
+    "import": "./dist/esm/index.js",
+    "require": "./dist/cjs/index.js",
+    "default": "./dist/esm/index.js"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
-    "clean": "rimraf lib",
-    "build": "tsc",
-    "build:example": "webpack --config ./example/webpack.config.js",
-    "prepublish": "npm run clean && npm run build",
+    "build": "tsc --project tsconfig.cjs.json & tsc --project tsconfig.esm.json",
+    "clean": "rm -rf dist",
+    "build:example": "npm run clean && npm run build && webpack --config ./example/webpack.config.js",
+    "prepublish": "npm run build:example",
     "webpack": "webpack --watch --config ./example/webpack.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -19,21 +29,15 @@
   ],
   "author": "Dongwon Lim",
   "license": "MIT",
-  "dependencies": {},
   "peerDependencies": {
     "hangul-js": "^0.2.6",
     "react": "^16.8.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.15.0",
-    "@babel/preset-env": "^7.15.0",
-    "@babel/preset-react": "^7.14.5",
     "@types/react": "^17.0.16",
-    "babel-loader": "^8.2.2",
     "hangul-js": "^0.2.6",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "rimraf": "^2.6.3",
     "typescript": "^4.3.5",
     "webpack": "^5.49.0",
     "webpack-cli": "^4.7.2"

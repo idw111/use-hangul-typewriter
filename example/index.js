@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { render } from 'react-dom';
-import useHangulTypewriter from '../lib';
+import useHangulTypewriter from '../dist/esm';
 
 const texts = [
   ['치키치키 차카차카 초코초코초', '나쁜일을 하면은~', '치키치키 차카차카 초코초코초', '우리에게 들키지~'],
