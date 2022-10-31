@@ -32,4 +32,4 @@ const Typewriter = ({}) => {
 | texts           | string[] | texts to display                                                                                             | []      |
 | interval        | number   | interval between typing a character                                                                          | 100     |
 | waitingInterval | 3000     | waiting interval after a single line of text is fully entered and before the line is about to start to erase | 3000    |
-| caret           | string   | caret to display                                                                                             | ▎       |
+| caret           | string   | string appended at the end of the displayed text as a caret                                                  | ▎       |
